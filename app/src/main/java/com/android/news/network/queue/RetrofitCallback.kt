@@ -2,6 +2,7 @@ package com.android.news.network.queue
 
  import com.android.news.dagger.BaseApplication
  import com.android.news.data.models.BaseResponseModel
+ import com.android.news.mvp.controller.BaseControllerListener
  import org.jetbrains.annotations.Nullable
 import retrofit2.Call
 import retrofit2.Callback

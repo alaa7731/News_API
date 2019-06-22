@@ -4,13 +4,14 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Configuration
 import com.android.news.dagger.components.AppComponents
+import com.android.news.dagger.components.DaggerAppComponents
 import com.android.news.dagger.modules.AppModule
 
 /**
  * This is the customize application class which will be run on the
  * init of the application process before any app component's running
  */
-abstract class BaseApplication : Application() {
+class BaseApplication : Application() {
 
     // build the dependency graph
     val appComponents: AppComponents by lazy {
