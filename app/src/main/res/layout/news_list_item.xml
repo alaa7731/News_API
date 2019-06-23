@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <android.support.v7.widget.CardView
+            style="@style/AppCardView"
+    >
+        <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                     android:layout_height="wrap_content">
+            <ImageView android:layout_width="90dp"
+                       app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent"
+                       android:layout_height="90dp" android:scaleType="centerCrop"
+                       android:transitionName="@string/image_transition"
+                       android:id="@+id/ivImage"/>
+
+            <TextView android:padding="@dimen/view_margin" android:layout_width="0dp" android:layout_height="wrap_content"
+                      android:id="@+id/tvTitle"
+                      android:lines="1" android:ellipsize="end" app:layout_constraintStart_toEndOf="@+id/ivImage"
+                      android:layout_marginStart="@dimen/view_margin" android:layout_marginTop="@dimen/view_margin"
+                      android:textSize="16sp"
+                      android:textColor="@color/black" tools:text="News Title" android:textStyle="bold"
+                      app:layout_constraintEnd_toEndOf="parent" app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView android:padding="2dp" android:layout_width="0dp" android:layout_height="wrap_content"
+                      android:id="@+id/tvDesc"
+                      android:lines="2" android:ellipsize="end" app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                      android:layout_marginStart="@dimen/view_margin" android:layout_marginTop="@dimen/view_margin"
+                      android:textSize="14sp" app:layout_constraintBottom_toBottomOf="@+id/ivImage"
+                      android:textColor="@color/black" tools:text="News Title"
+                      app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/ivImage"/>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+</LinearLayout>

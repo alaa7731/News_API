@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">News App</string>
     <string name="news_api">News API</string>
+    <string name="api_key">d88af0b069d147c689da502de7be2e50</string>
     <string name="alert_no_internet_connection">No internet available, Please check your connection.</string>
+    <string name="action_retry">Retry</string>
+    <string name="loading">Loading...</string>
+    <string name="image_transition">image_transition</string>
 </resources>

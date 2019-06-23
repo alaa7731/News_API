@@ -1,25 +1,26 @@
 package com.android.news.network.queue
 
- import com.android.news.dagger.BaseApplication
- import com.android.news.data.models.BaseResponseModel
- import com.android.news.mvp.controller.BaseControllerListener
- import org.jetbrains.annotations.Nullable
+import com.android.news.dagger.BaseApplication
+import com.android.news.data.models.BaseResponseModel
+import com.android.news.mvp.controller.BaseControllerListener
+import org.jetbrains.annotations.Nullable
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.io.IOException
 
-abstract class RetrofitCallback<T : BaseResponseModel>(val label: String,
-                                                       val serviceKey: String,
-                                                       val listener: BaseControllerListener?)
-    : Callback<T> {
+abstract class RetrofitCallback<T : BaseResponseModel>(
+    val label: String,
+    val serviceKey: String,
+    val listener: BaseControllerListener?
+) : Callback<T> {
 
     val tag: String by lazy {
         "${label}_${serviceKey}"
     }
 
     val retrofitBuilder by lazy {
-            (BaseApplication.appContext as BaseApplication).appComponents.provideRetrofit()
+        (BaseApplication.appContext as BaseApplication).appComponents.provideRetrofit()
     }
 
     val gson by lazy {
@@ -38,14 +39,14 @@ abstract class RetrofitCallback<T : BaseResponseModel>(val label: String,
         var errorMessage = response?.errorBody()?.string()
         response?.body()?.key = tag
         if (response?.isSuccessful() == true) {
-            if (response.body() != null) {
+            if (response.body() != null && response.body()?.status.equals("ok")) {
                 onSuccess(response.body()!!)
                 retrofitBuilder.removeRequest(tag)
             } else if (response.code() == 200) {
-                onResponse(BaseResponseModel())
+//                onResponse(BaseResponseModel())
+                handleError(response.code(), response.body()?.message)
                 retrofitBuilder.removeRequest(tag)
-            }
-            else {
+            } else {
                 handleError(response.code(), null)
             }
         } else {
@@ -70,7 +71,8 @@ abstract class RetrofitCallback<T : BaseResponseModel>(val label: String,
             CONNECTION_ERROR //Connection issues
             -> {
                 if ("Socket closed".equals(message, ignoreCase = true)
-                        || "Canceled".equals(message, ignoreCase = true)) {
+                    || "Canceled".equals(message, ignoreCase = true)
+                ) {
                     retrofitBuilder.stopRunning(tag)
                     return
                 }

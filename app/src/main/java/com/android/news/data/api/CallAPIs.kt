@@ -8,7 +8,7 @@ import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface CallAPIs {
-    @GET("/top-headlines")
+    @GET("top-headlines")
     fun getNews(@Query("country") country: String,
                                    @Query("apiKey") apiKey: String): Call<NewsResponseModel>
 }

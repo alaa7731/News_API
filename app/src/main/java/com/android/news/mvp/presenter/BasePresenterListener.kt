@@ -12,4 +12,5 @@ interface BasePresenterListener {
     fun showWarningMessage(message: String)
     fun showMessageListener(message: String ,listener: View.OnClickListener)
     fun showRetrySnackBar(@StringRes messageId: Int)
+    fun showErrorSnackBar(@StringRes message: String)
 }
